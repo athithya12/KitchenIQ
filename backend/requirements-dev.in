@@ -1,0 +1,25 @@
+# Inherit all packages from the core application list
+-r requirements.in
+
+# --- CORE TESTING ---
+pytest~=8.2
+pytest-django~=4.8
+pytest-cov~=5.0
+
+# --- API DOCUMENTATION ---
+drf-yasg~=1.21
+
+# --- PROJECT DOCUMENTATION ---
+sphinx~=7.3
+sphinx-rtd-theme~=2.0
+
+# --- CODE QUALITY (Formatting & Linting) ---
+black~=24.4        # Code formatter
+flake8~=7.0        # Linter
+isort~=5.12        # Import sorter
+
+# --- UTILITIES (Added for explicit reference) ---
+django-environ~=0.11
+
+# --- DEPENDENCY LOCKING TOOL ---
+pip-tools~=7.4

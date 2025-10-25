@@ -1,0 +1,58 @@
+# --- BLACK CONFIGURATION ---
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | build
+  | dist
+  | backend/apps/.*/migrations
+)/
+'''
+
+# --- ISORT CONFIGURATION ---
+[tool.isort]
+profile = "black"
+line_length = 88
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+known_first_party = ["backend.apps", "kitcheniq"]
+sections = [
+    "FUTURE",
+    "STDLIB",
+    "THIRDPARTY",
+    "DJANGO",
+    "FIRSTPARTY",
+    "LOCALFOLDER",
+    "OTHER",
+]
+default_section = "THIRDPARTY"
+
+# --- FLAKE8 CONFIGURATION (Using the preferred [tool.flake8] format) ---
+[tool.flake8]
+# Set the line length to match Black's and Isort's
+max-line-length = 88
+
+# Ignore specific errors caused by Black/Isort styling
+ignore = ["E501", "W503", "E203"]
+
+# Specify paths to exclude (Django migrations, virtual environments, etc.)
+# Note: Paths should be relative to the root where the tool is executed (likely the 'backend/' folder)
+exclude = [
+    ".git",
+    "__pycache__",
+    ".venv",
+    "*/migrations/*",
+    "*staticfiles/*",
+    "*tests/*",
+]

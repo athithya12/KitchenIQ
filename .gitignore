@@ -1,0 +1,63 @@
+# ---------------------------------------------
+# 1. System/OS Specific Files
+# ---------------------------------------------
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------------
+# 2. Project-Root / Docker / Secrets
+# ---------------------------------------------
+# Sensitive environment variables used by Docker Compose
+.env
+.env.local
+.env.production
+.dockerignore
+
+# Docker/MinIO generated volumes (Crucial to ignore large data files)
+/minio_data/
+/postgres_data/
+
+# Log files
+*.log
+
+# ---------------------------------------------
+# 3. Python / Django Specific (Backend: ./backend)
+# ---------------------------------------------
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+venv/
+env/
+
+# Django-specific and Local Files
+*.sqlite3
+/backend/db.sqlite3
+local_settings.py
+/backend/media/      # User-uploaded files (if not using S3/MinIO)
+
+# Test coverage & Caching
+.coverage
+.tox/
+htmlcov/
+.pytest_cache/
+
+# Documentation build output
+/docs/_build/
+
+# ---------------------------------------------
+# 4. Node / React Specific (Frontend: ./frontend)
+# ---------------------------------------------
+# Dependencies
+/frontend/node_modules
+/frontend/package-lock.json
+/frontend/yarn.lock
+
+# Build output
+/frontend/build
+/frontend/dist
+
+# Testing
+/frontend/coverage
