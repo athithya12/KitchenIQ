@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'kitcheniq.wsgi.application'
 # --- 3. DATABASE (Postgres) ---
 DATABASES = {
     # Uses the DATABASE_URL environment variable from docker-compose
-    'default': env.db(default='postgres://user:password@db:5432/kitcheniq')
+    'default': env.db('DATABASE_URL', default='postgres://user:password@db:5432/kitcheniq')
 }
 
 # --- 4. CHANNELS (WebSockets via Redis) ---
