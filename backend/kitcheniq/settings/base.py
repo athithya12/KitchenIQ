@@ -19,6 +19,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 # --- 1. INSTALLED APPLICATIONS ---
 INSTALLED_APPS = [    
     'daphne',               # ASGI and Websockets
+    'channels',             # WebSockets Framework
     
     # Core Django Apps (Minimal required for auth/sessions/admin)
     'django.contrib.admin',
@@ -32,7 +33,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',             # API Documentation 
     'storages',             # S3/MinIO Integration
-    'channels',             # WebSockets Framework
     'corsheaders',          # CORS
     'supertokens_python'    # Auth Service
 ]
@@ -94,6 +94,8 @@ supertokens_python.init(
         app_name='KitchenIQ',
         api_domain=env.str('API_DOMAIN', default='http://localhost:8000'),
         website_domain=env.str('WEBSITE_DOMAIN', default='http://localhost:3000'),
+        api_base_path="/auth",
+        website_base_path="/auth"
     ),
     supertokens_config=supertokens_python.SupertokensConfig(
         connection_uri=env.str('SUPERTK_HOST', default='http://localhost:3567'),
@@ -118,12 +120,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # --- 6. CORS HEADERS CONFIGURATION ---
-CORS_ORIGIN_WHITELIST = [
-    "<YOUR_WEBSITE_DOMAIN>"
-]
+CORS_ORIGIN_WHITELIST = []
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [env.str('WEBSITE_DOMAIN', default='http://localhost:3000')]
 CORS_ALLOW_HEADERS: List[str] = list(default_headers) + [
     "Content-Type"
 ] + get_all_cors_headers()
-
-CORS_ALLOW_CREDENTIALS = True

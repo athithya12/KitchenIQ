@@ -8,7 +8,7 @@ import environ
 env = environ.Env()
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-environ.Env.read_env(os.path.join(BASE_DIR, '.env.dev')) 
+environ.Env.read_env(os.path.join(BASE_DIR, '.env.development')) 
 
 # Now import the base settings, which will successfully read the variables we just loaded
 from .base import *
